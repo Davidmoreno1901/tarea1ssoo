@@ -3,7 +3,7 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -pthread -Wall
 
-# objetivo
+# nombre
 all: carrera
 
 # compilar
