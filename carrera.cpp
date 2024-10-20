@@ -12,42 +12,42 @@ std::vector<std::string> resultados;
 
 // n aleatorio
 int generarNumeroAleatorio(int min, int max) {
-    static thread_local std::mt19937 generador(std::random_device{}());
-    std::uniform_int_distribution<int> distribucion(min, max);
-    return distribucion(generador);
+static thread_local std::mt19937 generador(std::random_device{}());
+std::uniform_int_distribution<int> distribucion(min, max);
+return distribucion(generador);
 }
 
 // auto
 struct Auto {
-    std::string nombre;
-    int distancia_total;
-    int distancia_avanzada = 0;
+std::string nombre;
+int distancia_total;
+int distancia_avanzada = 0;
 
     Auto(std::string nombre, int distancia_total) : nombre(nombre), distancia_total(distancia_total) {}
     
     // avanzar
     void correr() {
-        while (distancia_avanzada < distancia_total) {
-            int avance = generarNumeroAleatorio(1, 10);
-            distancia_avanzada += avance;
-            if (distancia_avanzada > distancia_total) {
-                distancia_avanzada = distancia_total;
-            }
+    while (distancia_avanzada < distancia_total) {
+        int avance = generarNumeroAleatorio(1, 10);
+        distancia_avanzada += avance;
+        if (distancia_avanzada > distancia_total) {
+            distancia_avanzada = distancia_total;
+        }
 
             // tiempo de espera
-            int tiempo_espera = generarNumeroAleatorio(100, 500);
-            std::this_thread::sleep_for(std::chrono::milliseconds(tiempo_espera));
+        int tiempo_espera = generarNumeroAleatorio(100, 500);
+        std::this_thread::sleep_for(std::chrono::milliseconds(tiempo_espera));
 
             // avance
-            std::lock_guard<std::mutex> lock(mtx);
-            std::cout << nombre << " ha avanzado " << avance << " metros, total: " << distancia_avanzada << "/" << distancia_total << " metros.\n";
+        std::lock_guard<std::mutex> lock(mtx);
+        std::cout << nombre << " ha avanzado " << avance << " metros, total: " << distancia_avanzada << "/" << distancia_total << " metros.\n";
         }
 
         // llegada del auto
         {
-            std::lock_guard<std::mutex> lock(mtx);
-            std::cout << nombre << " ha terminado la carrera.\n";
-            resultados.push_back(nombre); 
+        std::lock_guard<std::mutex> lock(mtx);
+        std::cout << nombre << " ha terminado la carrera.\n";
+        resultados.push_back(nombre); 
         }
     }
 };
@@ -55,46 +55,46 @@ struct Auto {
 // validar n entero
 bool esEnteroValido(const std::string& str) {
     
-    if (str.empty()) return false;
+if (str.empty()) return false;
 
     size_t inicio = 0;
-    if (str[0] == '-') {
-        if (str.size() == 1) return false;  
+if (str[0] == '-') {
+     if (str.size() == 1) return false;  
         inicio = 1; 
     }
 
-    for (size_t i = inicio; i < str.size(); ++i) {
-        if (!std::isdigit(str[i])) {
-            return false; 
-        }
+for (size_t i = inicio; i < str.size(); ++i) {
+    if (!std::isdigit(str[i])) {
+        return false; 
     }
+}
 
-    return true;
+return true;
 }
 
 // start
 void iniciarCarrera(int num_autos, int distancia_total) {
-    std::vector<std::thread> hilos;
-    std::vector<Auto> autos;
+std::vector<std::thread> hilos;
+std::vector<Auto> autos;
 
-    for (int i = 1; i <= num_autos; ++i) {
-        autos.emplace_back("Auto" + std::to_string(i), distancia_total);
-    }
+for (int i = 1; i <= num_autos; ++i) {
+    autos.emplace_back("Auto" + std::to_string(i), distancia_total);
+}
 
-    for (int i = 0; i < num_autos; ++i) {
-        hilos.emplace_back(&Auto::correr, &autos[i]);
-    }
+for (int i = 0; i < num_autos; ++i) {
+    hilos.emplace_back(&Auto::correr, &autos[i]);
+}
 
-    // esperar
-    for (auto &hilo : hilos) {
-        hilo.join();
-    }
+// esperar
+for (auto &hilo : hilos) {
+     hilo.join();
+}
 
-    // resultados finales
-    std::lock_guard<std::mutex> lock(mtx);
-    std::cout << "\n--- Resultados Finales ---\n";
-    for (size_t i = 0; i < resultados.size(); ++i) {
-        std::cout << i + 1 << ". " << resultados[i] << " ha llegado a la meta.\n";
+ // resultados finales
+std::lock_guard<std::mutex> lock(mtx);
+std::cout << "\n--- Resultados Finales ---\n";
+for (size_t i = 0; i < resultados.size(); ++i) {
+    std::cout << i + 1 << ". " << resultados[i] << " ha llegado a la meta.\n";
     }
 }
 
@@ -114,8 +114,7 @@ int main() {
         }
         std::cerr << "Error: El número de autos debe ser un entero mayor que 1.\n";
     }
-
-    // loop validacion distancia
+// loop validacion distancia
     while (true) {
         std::string input_distancia;
         std::cout << "Ingrese la distancia total en metros : ";
