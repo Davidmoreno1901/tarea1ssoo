@@ -16,8 +16,10 @@ Instrucciones:
 1.- Descargar los archivos en la misma carpeta .
 2.- Abrir una terminal y localizar la carpeta donde se descargaron los archivos.
 3.- Ejecutar el comando "make" para compilar el programa.
-4.- Ejecutar el comando "./carrera" [numero de autos] [numero de metros] (Reemplazar "numeros de autos" y "numero de metros" con numeros  convenientes).
-5.- No sobrepasar el limite del equipo ( El programa producira errores si la carga es muy pesada para el equipo).
-6.- Para elimninar el ejecutable creado, ejecutar el comando "make clean"(Este paso no es obligatorio).
+4.- Ejecutar el comando "./carrera" 
+5.-Insertar [número de autos].
+6.-Insertar [distacia] de la carrera.
+7.- No sobrepasar el limite del equipo ( El programa producira errores si la carga es muy pesada para el equipo).
+8.- Para elimninar el ejecutable creado, ejecutar el comando "make clean"(Este paso no es obligatorio).
 
 
