@@ -1,0 +1,23 @@
+
+Este programa es una carrera de autos que utiliza hebras(threads), Donde:
+-Cada auto corre en una hebra.
+-Avanzan una cantidad aleatoria de metros en cada iteración.
+-Cada auto se detendrá por un tiempo aleatorio.
+-La carrera terminará cuando todos los autos hayan terminado el recorrido.
+
+
+Requisitos:
+
+- Sistema operativo Linux.
+- Compilador `g++` compatible con C++11 o superior.
+
+Instrucciones:
+
+1.- Descargar los archivos en la misma carpeta .
+2.- Abrir una terminal y localizar la carpeta donde se descargaron los archivos.
+3.- Ejecutar el comando "make" para compilar el programa.
+4.- Ejecutar el comando "./carrera" [numero de autos] [numero de metros] (Reemplazar "numeros de autos" y "numero de metros" con numeros  convenientes).
+5.- No sobrepasar el limite del equipo ( El programa producira errores si la carga es muy pesada para el equipo).
+6.- Para elimninar el ejecutable creado, ejecutar el comando "make clean"(Este paso no es obligatorio).
+
+
