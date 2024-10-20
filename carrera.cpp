@@ -7,7 +7,7 @@
 #include <string>
 #include <algorithm>
 
-//David Moreno Vicente Bascuñan
+//Vicente Bascuñan && David Moreno
 
 
 std::mutex mtx;  
